@@ -34,13 +34,16 @@ connectDB();
 //     res.send(`This is about page`);
 //     // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
 // })
-
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
-        if (err) {
-            res.status(500).send(err)
+app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+app.get("*", function(_, res) {
+    res.sendFile(
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')),
+        function (err) {
+            if(err) {
+                res.status(500).send(err)
+            }
         }
-    })
+    )
 })
 
 // app.get("/register", (req, res) => {
@@ -57,9 +60,13 @@ app.get('/*', function (req, res) {
 
 if (process.env.NODE_ENV === "production") {
     const path = require("path");
-    app.get("/", (req, res) => {
-        app.use(express.static(path.resolve(__dirname, 'client', 'build')));
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'),function (err) {
+            if(err) {
+                res.status(500).send(err)
+            }
+        });
     })
 }
 
