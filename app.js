@@ -30,18 +30,18 @@ connectDB();
 //     res.send(`This is Home page`);
 // })
 
-// app.get("/about", (req, res) => {
-//     res.send(`This is about page`);
-//     // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
-// })
-
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
-        if (err) {
-            res.status(500).send(err)
-        }
-    })
+app.get("/about", (req, res) => {
+    res.send(`This is about page`);
+    // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
 })
+
+// app.get('/*', function (req, res) {
+//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
+//         if (err) {
+//             res.status(500).send(err)
+//         }
+//     })
+// })
 
 // app.get("/register", (req, res) => {
 //     res.send("This is register page");
