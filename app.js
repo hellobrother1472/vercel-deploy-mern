@@ -6,7 +6,6 @@ const connectDB = require("./db/connectDB"); // Requiring the connect Db which i
 const bodyParser = require("body-parser"); // Don't include it in router files as it is a middleware and it will apply to all the calls here in app.js.
 // const User = require("./model/User");
 const authMiddleware = require("./middleware/authMiddleware");
-const path = require("path");
 
 
 const app = express();
@@ -37,9 +36,12 @@ connectDB();
 // })
 
 app.get('/*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
-});
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
+        if (err) {
+            res.status(500).send(err)
+        }
+    })
+})
 
 // app.get("/register", (req, res) => {
 //     res.send("This is register page");
@@ -59,6 +61,10 @@ if (process.env.NODE_ENV === "production") {
         app.use(express.static(path.resolve(__dirname, 'client', 'build')));
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
+    app.get("/contact", (req, res) => {
+        app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    })
 }
 
 
@@ -75,7 +81,7 @@ app.listen(port, function () {
 // })
 
 
-// MiddleWare (It executes in the middle before taking the request or before everything on that route or the whole website depending on how you want to use it) 
+// MiddleWare (It executes in the middle before taking the request or before everything on that route or the whole website depending on how you want to use it)
 // middleware = (req, res, next) => {
 //     console.log("I am under middleware");
 //     if(a == 1){
