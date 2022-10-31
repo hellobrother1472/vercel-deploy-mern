@@ -35,9 +35,9 @@ connectDB();
 //     // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
 // })
 
-// app.get("/contact", (req, res) => {
-//     res.send("This is contact page");
-// })
+app.get("/contact", (req, res) => {
+    res.send("This is contact page");
+})
 
 // app.get("/register", (req, res) => {
 //     res.send("This is register page");
@@ -53,7 +53,7 @@ connectDB();
 
 if (process.env.NODE_ENV === "production") {
     const path = require("path");
-    app.get("/*", (req, res) => {
+    app.get("*", (req, res) => {
         app.use(express.static(path.resolve(__dirname, 'client', 'build')));
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
