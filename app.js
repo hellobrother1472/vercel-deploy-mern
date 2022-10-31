@@ -30,10 +30,10 @@ connectDB();
 //     res.send(`This is Home page`);
 // })
 
-app.get("/about", (req, res) => {
-    res.send(`This is about page`);
-    // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
-})
+// app.get("/about", (req, res) => {
+//     res.send(`This is about page`);
+//     // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
+// })
 
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'), function (err) {
