@@ -35,17 +35,17 @@ connectDB();
 //     // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
 // })
 
-app.get("/contact", (req, res) => {
-    res.send("This is contact page");
-})
+// app.get("/contact", (req, res) => {
+//     res.send("This is contact page");
+// })
 
-app.get("/register", (req, res) => {
-    res.send("This is register page");
-})
+// app.get("/register", (req, res) => {
+//     res.send("This is register page");
+// })
 
-app.get("/signin", (req, res) => {
-    res.send("This is signin page");
-})
+// app.get("/signin", (req, res) => {
+//     res.send("This is signin page");
+// })
 
 // app.get("/signup", (req, res) => {
 //     res.send("This is signup page");
