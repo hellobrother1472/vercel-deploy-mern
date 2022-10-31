@@ -6,6 +6,7 @@ const connectDB = require("./db/connectDB"); // Requiring the connect Db which i
 const bodyParser = require("body-parser"); // Don't include it in router files as it is a middleware and it will apply to all the calls here in app.js.
 // const User = require("./model/User");
 const authMiddleware = require("./middleware/authMiddleware");
+const path = require("path");
 
 
 const app = express();
@@ -35,9 +36,10 @@ connectDB();
 //     // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
 // })
 
-app.get("/contact", (req, res) => {
-    res.send("This is contact page");
-})
+app.get('/*', function (req, res) {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+});
 
 // app.get("/register", (req, res) => {
 //     res.send("This is register page");
@@ -54,10 +56,6 @@ app.get("/contact", (req, res) => {
 if (process.env.NODE_ENV === "production") {
     const path = require("path");
     app.get("/", (req, res) => {
-        app.use(express.static(path.resolve(__dirname, 'client', 'build')));
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    })
-    app.get("/contact", (req, res) => {
         app.use(express.static(path.resolve(__dirname, 'client', 'build')));
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
