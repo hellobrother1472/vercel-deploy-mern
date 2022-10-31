@@ -34,17 +34,17 @@ connectDB();
 //     res.send(`This is about page`);
 //     // res.send(`This is about page and value is ${req.cookies.sample} and ${req.cookies.jwt}`);
 // })
-app.use(express.static(path.resolve(__dirname, 'client', 'build')));
-app.get("*", function(_, res) {
-    res.sendFile(
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')),
-        function (err) {
-            if(err) {
-                res.status(500).send(err)
-            }
-        }
-    )
-})
+// app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+// app.get("*", function(_, res) {
+//     res.sendFile(
+//         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')),
+//         function (err) {
+//             if(err) {
+//                 res.status(500).send(err)
+//             }
+//         }
+//     )
+// })
 
 // app.get("/register", (req, res) => {
 //     res.send("This is register page");
